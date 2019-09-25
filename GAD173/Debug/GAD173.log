@@ -1,0 +1,8 @@
+﻿  Main.cpp
+C:\Users\hhu22\Documents\Repo\GAD173\GAD173\Main.cpp(20,23): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\hhu22\Documents\Repo\GAD173\GAD173\Main.cpp(23,22): warning C4244:  '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\hhu22\Documents\Repo\GAD173\GAD173\Main.cpp(23,22): warning C4244:         with
+C:\Users\hhu22\Documents\Repo\GAD173\GAD173\Main.cpp(23,22): warning C4244:         [
+C:\Users\hhu22\Documents\Repo\GAD173\GAD173\Main.cpp(23,22): warning C4244:             T=float
+C:\Users\hhu22\Documents\Repo\GAD173\GAD173\Main.cpp(23,22): warning C4244:         ]
+  GAD173.vcxproj -> C:\Users\hhu22\Documents\Repo\GAD173\Debug\GAD173.exe

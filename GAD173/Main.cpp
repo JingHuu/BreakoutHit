@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+using namespace std;
 
 int main()
 {
@@ -20,7 +21,8 @@ int main()
 	sf::CircleShape ball(ballSize); // create the ball
 	ball.setFillColor(sf::Color::Cyan); // set ball colour
 	sf::Vector2f velocity = sf::Vector2f(0.f, 0.f); // setup velocity
-	velocity.x = rand() % 10; // initial x will be random between 0-9
+	//velocity.x = rand() % 10; // initial x will be random between 0-9
+	velocity.x = 5;
 	velocity.y = -5;
 	ball.setPosition(sf::Vector2f(rectPos.x, rectPos.y - rectSize.y)); // move the ball up by the height of the paddle
 

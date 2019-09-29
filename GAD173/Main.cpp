@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-constexpr int windowX = 600; // window width
-constexpr int windowY = 600; // window height
+constexpr int windowX = { 600 }; // window width
+constexpr int windowY = { 600 }; // window height
 const sf::Color colour = sf::Color(255, 255, 0, 255); // custom colour. value between 0-255 for R,G,B,A
 
 // make a class for rectangle shapes
@@ -9,15 +9,13 @@ class Rectangle
 {
 public:
 	sf::RectangleShape shape;
-	float x = shape.getPosition().x; 
-	float y = shape.getPosition().y;
-	float left = x - shape.getSize().x / 2.f;
-	float right = x + shape.getSize().x / 2.f;
-	float top = y - shape.getSize().y / 2.f;
-	float bottom = y + shape.getSize().y / 2.f; // Rectangle boundaries. The origin would be set to the center of the shape. 
+	float x() { return shape.getPosition().x; }
+	float y() { return shape.getPosition().y; }
+	float left() { return x() - shape.getSize().x / 2.f; }
+	float right() { return x() + shape.getSize().x / 2.f; }
+	float top() { return y() - shape.getSize().y / 2.f; }
+	float bottom() { return y() + shape.getSize().y / 2.f; } // Rectangle boundaries. The origin would be set to the center of the shape. 
 
-	// Used to check the collision. This is a constant because it wouldn't change the rectangle
-	bool IsOverlappingWith(const Rectangle& other) const;
 };
 
 // make a class of the Paddle
@@ -41,26 +39,18 @@ public:
 	{
 		shape.move(speed);
 		// check if left is pressed
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && left() > 0)
 		{
-			// move left
 			speed.x = -velocity;
-			// check if the position is out side of the left side window. If it is, reset it back to the edge of the window
-			if (left < 0)
-			{
-				left = 0;
-			}
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && right() < windowX)
 		{
-			// move right
 			speed.x = velocity;
-			// check if the position is out side of the right side window. If it is, reset it back to the edge of the window
-			if (right > windowX)
-			{
-				right = windowX;
-			}
-		} 
+		}
+		else
+		{
+			speed.x = 0;
+		}
 	}
 	
 };
@@ -77,11 +67,11 @@ private:
 // make a class of ball
 class Ball
 {
-	int ballRadius = 10; // setup ball size
-	int ballVelocity = 6;
 public:
+	int ballRadius = 10; // setup ball size
+	int ballVelocity = 5;
 	sf::CircleShape shape;
-	sf::Vector2f velocity{ -ballVelocity, -ballVelocity }; // initial velocity on x axis would be randomised between 0~9
+	sf::Vector2f velocity{ -ballVelocity, -ballVelocity };
 
 	Ball(float mX, float mY)
 	{
@@ -91,44 +81,60 @@ public:
 		shape.setOrigin(ballRadius, ballRadius);
 	}
 public:
-	float x = shape.getPosition().x; // Reminder: Object origin is set to the center. 
-	float y = shape.getPosition().y;
-	float left = x - ballRadius / 2.f;
-	float right = x + ballRadius / 2.f;
-	float top = y + ballRadius / 2.f;
-	float bottom = y - ballRadius / 2.f;
+	float x() { return shape.getPosition().x; } // Reminder: Object origin is set to the center. 
+	float y() { return shape.getPosition().y; }
+	float left() { return x() - shape.getRadius(); }
+	float right() { return x() + shape.getRadius(); }
+	float top() { return y() - shape.getRadius(); }
+	float bottom() { return y() + shape.getRadius(); }
 
 	void Update()
 	{
 		shape.move(velocity);
 		// Set the window barrier for the ball
-		if (left < 0 )
+		if (left() < 0 )
 		{
 			velocity.x = ballVelocity;
 		}
-		else if (right > windowX)
+		else if (right() > windowX)
 		{
 			velocity.x = -ballVelocity;
 		}
 
-		if (top < 0)
+		if (top() < 0)
 		{
 			velocity.y = ballVelocity;
 		}
-		else if (bottom > windowY)
+		else if (bottom() > windowY)
 		{
 			velocity.y = -ballVelocity;
 		}
 	}
 };
 
-/* bool Rectangle::IsOverlappingWith(const Rectangle& other) const
+template <class c1, class c2>
+bool isOverlapping(c1& mA, c2& mB)
 {
-	return right > other.left&& left < other.right
-		&& bottom > other.top&& top < other.bottom;
-}*/
-void CollisionTest()
+	return mA.right() >= mB.left() && mA.left() <= mB.right() &&
+		mA.bottom() >= mB.top() && mA.top() <= mB.bottom();
+}
+
+void CollisionTest(Ball& mBall, Paddle& mPaddle)
 {
+	// check if the ball is overlapping with the paddle
+	if (!isOverlapping(mBall, mPaddle))
+	{
+		return;
+	}
+	mBall.velocity.y = -mBall.ballVelocity;
+	if (mBall.x() < mPaddle.x())
+	{
+		mBall.velocity.x = -mBall.ballVelocity;
+	}
+	else
+	{
+		mBall.velocity.x = mBall.ballVelocity;
+	}
 
 }
 
@@ -146,7 +152,7 @@ int main()
 	{
 		paddle.Update();
 		ball.Update();
-
+		CollisionTest(ball, paddle);
 
 		sf::Event event;
 		//PollEvent is our window updating
@@ -166,10 +172,4 @@ int main()
 	}
 
 	return 0;
-}
-
-bool Rectangle::IsOverlappingWith(const Rectangle& other) const
-{
-	return right > other.left && left < other.right
-		&& bottom > other.top && top < other.bottom;
 }

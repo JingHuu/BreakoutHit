@@ -1,71 +1,152 @@
 #include <SFML/Graphics.hpp>
-using namespace std;
 
-int main()
+constexpr int windowX = 600; // window width
+constexpr int windowY = 600; // window height
+const sf::Color colour = sf::Color(255, 255, 0, 255); // custom colour. value between 0-255 for R,G,B,A
+
+// make a class for rectangle shapes
+class Rectangle
 {
-	int speed = 10; // paddle speed
-	int windowX = 600; // window width
-	int windowY = 600; // window height
-	sf::Vector2f rectSize = sf::Vector2f(200.f, 50.f); // size of the rectangle
-	sf::Vector2f rectPos = sf::Vector2f((windowX / 2) - (rectSize.x / 2), (windowY / 2) - (rectSize.y / 2)); // rectangle position
-	sf::Color colour = sf::Color(255, 255, 0, 255); // custom colour. value between 0-255 for R,G,B,A
+public:
+	sf::RectangleShape shape;
+	float x = shape.getPosition().x; 
+	float y = shape.getPosition().y;
+	float left = x - shape.getSize().x / 2.f;
+	float right = x + shape.getSize().x / 2.f;
+	float top = y - shape.getSize().y / 2.f;
+	float bottom = y + shape.getSize().y / 2.f; // Rectangle boundaries. The origin would be set to the center of the shape. 
 
-	sf::RenderWindow window(sf::VideoMode(windowX, windowY), "SFML works!");
-	window.setFramerateLimit(60); // stop the game from going insanely fast
+	// Used to check the collision. This is a constant because it wouldn't change the rectangle
+	bool IsOverlappingWith(const Rectangle& other) const;
+};
 
-	sf::RectangleShape paddle (sf::Vector2f(rectSize.x, rectSize.y)); // create the shape, in this case rectangle
-	paddle.setFillColor(colour); // set rectangle colour
-	paddle.setPosition(rectPos); // spawn in the center
+// make a class of the Paddle
+class Paddle : public Rectangle
+{
+public:
+	const int velocity = 10; // paddle speed is constant, unless making powerups or debuff for it later
+	sf::Vector2f speed;
+	sf::Vector2f paddleSize = sf::Vector2f(200.f, 50.f); // size of the rectangle
 
-	int ballSize = 50;
-	sf::CircleShape ball(ballSize); // create the ball
-	ball.setFillColor(sf::Color::Cyan); // set ball colour
-	sf::Vector2f velocity = sf::Vector2f(0.f, 0.f); // setup velocity
-	//velocity.x = rand() % 10; // initial x will be random between 0-9
-	velocity.x = 5;
-	velocity.y = -5;
-	ball.setPosition(sf::Vector2f(rectPos.x, rectPos.y - rectSize.y)); // move the ball up by the height of the paddle
-
-	// code runs while window is open
-	while (window.isOpen())
+	Paddle(float mX, float mY)
 	{
+		shape.setPosition(mX, mY);
+		shape.setSize(paddleSize);
+		shape.setFillColor(colour);
+		shape.setOrigin(paddleSize.x / 2.f, paddleSize.y / 2.f); // set origin to the center
+	}
+
+	// Check player input within Update function
+	void Update()
+	{
+		shape.move(speed);
 		// check if left is pressed
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			// move left
-			rectPos.x -= speed;
+			speed.x = -velocity;
 			// check if the position is out side of the left side window. If it is, reset it back to the edge of the window
-			if (rectPos.x <= 0)
+			if (left < 0)
 			{
-				rectPos.x = 0;
+				left = 0;
 			}
-			// update the position of our paddle
-			paddle.setPosition(rectPos);
 		}
-
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			// move right
-			rectPos.x += speed;
+			speed.x = velocity;
 			// check if the position is out side of the right side window. If it is, reset it back to the edge of the window
-			if (rectPos.x >= windowX - rectSize.x)
+			if (right > windowX)
 			{
-				rectPos.x = windowX - rectSize.x;
+				right = windowX;
 			}
-			// update the position of our paddle
-			paddle.setPosition(rectPos);
+		} 
+	}
+	
+};
+
+// make a class of the bricks
+class Brick : public Rectangle
+{
+public:
+
+private:
+
+};
+
+// make a class of ball
+class Ball
+{
+	int ballRadius = 10; // setup ball size
+	int ballVelocity = 6;
+public:
+	sf::CircleShape shape;
+	sf::Vector2f velocity{ -ballVelocity, -ballVelocity }; // initial velocity on x axis would be randomised between 0~9
+
+	Ball(float mX, float mY)
+	{
+		shape.setPosition(mX, mY);
+		shape.setRadius(ballRadius);
+		shape.setFillColor(sf::Color::Cyan);
+		shape.setOrigin(ballRadius, ballRadius);
+	}
+public:
+	float x = shape.getPosition().x; // Reminder: Object origin is set to the center. 
+	float y = shape.getPosition().y;
+	float left = x - ballRadius / 2.f;
+	float right = x + ballRadius / 2.f;
+	float top = y + ballRadius / 2.f;
+	float bottom = y - ballRadius / 2.f;
+
+	void Update()
+	{
+		shape.move(velocity);
+		// Set the window barrier for the ball
+		if (left < 0 )
+		{
+			velocity.x = ballVelocity;
+		}
+		else if (right > windowX)
+		{
+			velocity.x = -ballVelocity;
 		}
 
-		ball.move(velocity); // constant movement for ball
-		// Set the window barrier for the ball
-		if (ball.getPosition().x <= 0 || ball.getPosition().x >= windowX - ballSize*2)
+		if (top < 0)
 		{
-			velocity.x = -velocity.x;
+			velocity.y = ballVelocity;
 		}
-		else if (ball.getPosition().y <= 0 || ball.getPosition().y >= windowY - ballSize*2)
+		else if (bottom > windowY)
 		{
-			velocity.y = -velocity.y;
+			velocity.y = -ballVelocity;
 		}
+	}
+};
+
+/* bool Rectangle::IsOverlappingWith(const Rectangle& other) const
+{
+	return right > other.left&& left < other.right
+		&& bottom > other.top&& top < other.bottom;
+}*/
+void CollisionTest()
+{
+
+}
+
+int main()
+{
+	// Render the window
+	sf::RenderWindow window(sf::VideoMode(windowX, windowY), "Breakout Hit!");
+	window.setFramerateLimit(60); // stop the game from going insanely fast
+
+	Paddle paddle{ windowX / 2, windowY / 1.5 }; // set paddle position
+	Ball ball{ windowX / 2, windowY / 2 }; // set ball position
+
+	// code runs while window is open
+	while (window.isOpen())
+	{
+		paddle.Update();
+		ball.Update();
+
 
 		sf::Event event;
 		//PollEvent is our window updating
@@ -77,10 +158,18 @@ int main()
 		}
 
 		window.clear();
-		window.draw(paddle);
-		window.draw(ball);
+		//window.draw(paddle);
+		//window.draw(ball);
+		window.draw(paddle.shape);
+		window.draw(ball.shape);
 		window.display();
 	}
 
 	return 0;
+}
+
+bool Rectangle::IsOverlappingWith(const Rectangle& other) const
+{
+	return right > other.left && left < other.right
+		&& bottom > other.top && top < other.bottom;
 }

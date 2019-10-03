@@ -1,60 +1,34 @@
 ﻿  Main.cpp
-E:\c++Repos\BreakoutHit\GAD173\Main.h(83,14): warning C4244: '=': conversion from 'const int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(83,14): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.h(83,14): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.h(83,14): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.h(83,14): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.h(87,14): warning C4244: '=': conversion from 'const int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(87,14): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.h(87,14): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.h(87,14): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.h(87,14): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,40): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,40): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,40): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,40): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,25): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,25): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,25): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,25): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.h(114,25): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.h(119,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(121,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(121,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(137,17): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(137,17): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.h(137,17): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.h(137,17): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.h(137,17): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.h(141,17): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(141,17): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.h(141,17): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.h(141,17): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.h(141,17): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.h(146,17): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(146,17): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.h(146,17): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.h(146,17): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.h(146,17): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.h(150,17): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.h(150,17): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.h(150,17): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.h(150,17): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.h(150,17): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(20,21): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(20,21): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(20,21): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(20,21): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(20,21): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(23,22): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(23,22): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(23,22): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(23,22): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(23,22): warning C4244:         ]
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(27,27): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(27,27): warning C4244:         with
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(27,27): warning C4244:         [
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(27,27): warning C4244:             T=float
-E:\c++Repos\BreakoutHit\GAD173\Main.cpp(27,27): warning C4244:         ]
-  GAD173.vcxproj -> E:\c++Repos\BreakoutHit\Debug\GAD173.exe
+D:\Repo\BreakoutHit\GAD173\Main.h(94,14): warning C4244: '=': conversion from 'const int' to 'T', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.h(94,14): warning C4244:         with
+D:\Repo\BreakoutHit\GAD173\Main.h(94,14): warning C4244:         [
+D:\Repo\BreakoutHit\GAD173\Main.h(94,14): warning C4244:             T=float
+D:\Repo\BreakoutHit\GAD173\Main.h(94,14): warning C4244:         ]
+D:\Repo\BreakoutHit\GAD173\Main.h(98,14): warning C4244: '=': conversion from 'const int' to 'T', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.h(98,14): warning C4244:         with
+D:\Repo\BreakoutHit\GAD173\Main.h(98,14): warning C4244:         [
+D:\Repo\BreakoutHit\GAD173\Main.h(98,14): warning C4244:             T=float
+D:\Repo\BreakoutHit\GAD173\Main.h(98,14): warning C4244:         ]
+D:\Repo\BreakoutHit\GAD173\Main.h(125,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.h(125,39): warning C4244:         with
+D:\Repo\BreakoutHit\GAD173\Main.h(125,39): warning C4244:         [
+D:\Repo\BreakoutHit\GAD173\Main.h(125,39): warning C4244:             T=float
+D:\Repo\BreakoutHit\GAD173\Main.h(125,39): warning C4244:         ]
+D:\Repo\BreakoutHit\GAD173\Main.h(125,25): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.h(125,25): warning C4244:         with
+D:\Repo\BreakoutHit\GAD173\Main.h(125,25): warning C4244:         [
+D:\Repo\BreakoutHit\GAD173\Main.h(125,25): warning C4244:             T=float
+D:\Repo\BreakoutHit\GAD173\Main.h(125,25): warning C4244:         ]
+D:\Repo\BreakoutHit\GAD173\Main.h(130,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.h(132,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.h(132,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.cpp(70,31): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.cpp(70,22): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.cpp(77,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.cpp(83,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.cpp(86,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.cpp(90,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Repo\BreakoutHit\GAD173\Main.cpp(128,21): warning C4018: '<': signed/unsigned mismatch
+D:\Repo\BreakoutHit\GAD173\Main.cpp(149,21): warning C4018: '<': signed/unsigned mismatch
+D:\Repo\BreakoutHit\GAD173\Main.cpp(168): warning C4715: 'Game::LossLife': not all control paths return a value
+  GAD173.vcxproj -> D:\Repo\BreakoutHit\Debug\GAD173.exe

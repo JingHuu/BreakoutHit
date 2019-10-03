@@ -2,8 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-constexpr int windowX = { 600 }; // window width
-constexpr int windowY = { 600 }; // window height
+constexpr float windowX = { 1000 }; // window width
+constexpr float windowY = { 600 }; // window height
 const sf::Color colour = sf::Color(255, 255, 0, 255); // custom colour. value between 0-255 for R,G,B,A
 
 
@@ -12,10 +12,9 @@ class Game // gonna make this a game manager
 public: // functions to run the game
 	bool Start();
 	int Update();
-
+	int LossLife();
+private:
 	sf::RenderWindow window;
-	const float windowWidth = 1000;
-	const float windowHeight = 600;
 	int score = 0;
 	int lives = 3;
 };
@@ -42,17 +41,31 @@ public:
 	sf::RectangleShape left;
 	sf::RectangleShape right;
 
-	void DrawWall() 
+	bool SetWall()
 	{
-		top.setSize(sf::Vector2f(windowX, 1.f ));
+		top.setSize(sf::Vector2f(windowX, 1));
 		top.setPosition(0, 0);
-		bottom.setSize(sf::Vector2f(windowX, 1.f));
-		bottom.setPosition(0, windowY - 1.f);
-		left.setSize(sf::Vector2f(1.f, windowY));
+		top.setFillColor(sf::Color::Black);
+		bottom.setSize(sf::Vector2f(windowX, 1));
+		bottom.setPosition(sf::Vector2f(0, windowY - 1));
+		bottom.setFillColor(sf::Color::Black);
+		left.setSize(sf::Vector2f(1, windowY));
 		left.setPosition(0, 0);
-		right.setSize(sf::Vector2f(1.f, windowY));
-		right.setPosition(windowX - 1.f, windowX);
+		left.setFillColor(sf::Color::Black);
+		right.setSize(sf::Vector2f(1, windowY));
+		right.setPosition(sf::Vector2f(windowX - 1, 0));
+		right.setFillColor(sf::Color::Black);
+		return true;
 	}
+
+	/*bool SetWall() 
+	{
+		shape.setPosition(windowX / 2, windowY / 2);
+		shape.setSize( sf::Vector2f((windowX - 20.f), (windowY-20.f)));
+		shape.setOrigin((windowX-20) / 2, (windowY-20) / 2);
+		shape.setFillColor(sf::Color::Blue);
+		return true;
+	}*/
 };
 
 // make a class of the Paddle
@@ -96,10 +109,10 @@ public:
 class Brick : public Rectangle
 {
 public:
-
-private:
-	sf::Vector2f brickSize;
-	sf::Vector2f brickPos;
+	sf::RectangleShape bShape;
+	sf::Color bColour;
+	sf::Vector2f bSize;
+	sf::Vector2f bPos;
 };
 
 // make a class of ball
@@ -107,16 +120,16 @@ class Ball
 {
 public:
 	int ballRadius = 10; // setup ball size
-	int ballVelocity = 5;
+	int ballVelocity = 3;
 	sf::CircleShape shape;
-	sf::Vector2f velocity{ -ballVelocity, -ballVelocity };
+	sf::Vector2f velocity{ ballVelocity, ballVelocity };
 
 	Ball(float mX, float mY)
 	{
 		shape.setPosition(mX, mY);
 		shape.setRadius(ballRadius);
 		shape.setFillColor(sf::Color::Cyan);
-		shape.setOrigin(ballRadius, ballRadius);
+		shape.setOrigin(ballRadius, ballRadius); // set origin to the center of the ball
 	}
 
 	float x() { return shape.getPosition().x; } // Reminder: Object origin is set to the center. 
@@ -129,8 +142,8 @@ public:
 	void Update()
 	{
 		shape.move(velocity);
-		// Set the window barrier for the ball. TODO should change this to using the "isOverlapping"
-		if (left() < 0)
+		// Set the window barrier for the ball. Temporary
+		/*if (left() < 0)
 		{
 			velocity.x = ballVelocity;
 		}
@@ -146,7 +159,7 @@ public:
 		else if (bottom() > windowY)
 		{
 			velocity.y = -ballVelocity;
-		}
+		}*/
 	}
 };
 
